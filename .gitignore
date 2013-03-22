@@ -164,3 +164,13 @@ pip-log.txt
 
 # temp prefix
 __*
+
+# Excutable files
+*.exe
+
+# Lua Headers
+lauxlib.h
+liblua.a
+lua.h
+luaconf.h
+lualib.h

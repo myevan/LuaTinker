@@ -1,0 +1,40 @@
+CC = clang
+LD = clang++
+LUA = lua-5.1.5
+CFLAGS = -Wall -x c++ -arch x86_64 -fmessage-length=0 -std=gnu++11 -stdlib=libc++ -fpascal-strings -O0 -DDEBUG=1 
+LDFLAGS = -arch x86_64 -mmacosx-version-min=10.8 -stdlib=libc++ -llua
+
+all: samples
+
+clean:
+	rm -rf *.a
+	rm -rf *.o
+	rm -rf *.exe
+	rm -rf __$(LUA)
+	rm -rf lua.h
+	rm -rf lualib.h
+	rm -rf luaconf.h
+	rm -rf lauxlib.h
+
+samples: __$(LUA) liblua.a sample1.exe sample2.exe 
+
+__$(LUA):
+	wget http://www.lua.org/ftp/$(LUA).tar.gz 
+	tar -zxvf $(LUA).tar.gz
+	rm -rf $(LUA).tar.gz
+	mv $(LUA) __$(LUA)
+
+liblua.a:
+	cd __$(LUA) && $(MAKE) macosx
+	cp __$(LUA)/src/lua.h .
+	cp __$(LUA)/src/lualib.h .
+	cp __$(LUA)/src/luaconf.h .
+	cp __$(LUA)/src/lauxlib.h .
+	cp __$(LUA)/src/liblua.a .
+
+%.exe: %.o lua_tinker.o
+	        $(LD) $(LDFLAGS) -o $@ $^ 
+
+%.o : %.cpp
+	        $(CC) $(CFLAGS) -c $< 
+
