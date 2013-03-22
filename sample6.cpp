@@ -1,4 +1,4 @@
-// sample3.cpp : LuaTinker ÀÇ Å¬·¡½º ±â´ÉÀ» ¾Ë¾Æº»´Ù.
+// sample3.cpp : LuaTinker ì˜ í´ë˜ìŠ¤ ê¸°ëŠ¥ì„ ì•Œì•„ë³¸ë‹¤.
 //
 
 extern "C" 
@@ -10,17 +10,17 @@ extern "C"
 
 #include "lua_tinker.h"
 
-// ÇÔ¼ö ÇüÅÂ°¡ int(*)(lua_State*) ¶Ç´Â int(*)(lua_State*,T1) ÀÏ °æ¿ì¸¸ lua_yield() ¸¦ ¾µ ¼ö ÀÖ´Ù.
-// ÇÔ¼ö ÀÎÀÚ°¡ ´õ ÇÊ¿äÇÒ °æ¿ì lua_tinker.h ÀÇ "functor (non-managed)" ÄÚ¸àÆ® ºÎºĞÀ» Âü°íÇØ¼­ Á÷Á¢ Ãß°¡ÇÒ °Í
+// í•¨ìˆ˜ í˜•íƒœê°€ int(*)(lua_State*) ë˜ëŠ” int(*)(lua_State*,T1) ì¼ ê²½ìš°ë§Œ lua_yield() ë¥¼ ì“¸ ìˆ˜ ìˆë‹¤.
+// í•¨ìˆ˜ ì¸ìê°€ ë” í•„ìš”í•  ê²½ìš° lua_tinker.h ì˜ "functor (non-managed)" ì½”ë©˜íŠ¸ ë¶€ë¶„ì„ ì°¸ê³ í•´ì„œ ì§ì ‘ ì¶”ê°€í•  ê²ƒ
 int TestFunc(lua_State* L)
 {
-	printf("# TestFunc ½ÇÇàÁß\n");
+	printf("# TestFunc ì‹¤í–‰ì¤‘\n");
 	return lua_yield(L, 0);
 }
 
 int TestFunc2(lua_State* L, float a)
 {
-	printf("# TestFunc2(L,%f) ½ÇÇàÁß\n", a);
+	printf("# TestFunc2(L,%f) ì‹¤í–‰ì¤‘\n", a);
 	return lua_yield(L, 0);
 }
 
@@ -28,74 +28,74 @@ class TestClass
 {
 public:
 
-	// ÇÔ¼ö ÇüÅÂ°¡ int(T::*)(lua_State*) ¶Ç´Â int(T::*)(lua_State*,T1) ÀÏ °æ¿ì¸¸ lua_yield() ¸¦ ¾µ ¼ö ÀÖ´Ù.
-	// ÇÔ¼ö ÀÎÀÚ°¡ ´õ ÇÊ¿äÇÒ °æ¿ì lua_tinker.h ÀÇ "class member functor (non-managed)" ÄÚ¸àÆ® ºÎºĞÀ» Âü°íÇØ¼­ Á÷Á¢ Ãß°¡ÇÒ °Í
+	// í•¨ìˆ˜ í˜•íƒœê°€ int(T::*)(lua_State*) ë˜ëŠ” int(T::*)(lua_State*,T1) ì¼ ê²½ìš°ë§Œ lua_yield() ë¥¼ ì“¸ ìˆ˜ ìˆë‹¤.
+	// í•¨ìˆ˜ ì¸ìê°€ ë” í•„ìš”í•  ê²½ìš° lua_tinker.h ì˜ "class member functor (non-managed)" ì½”ë©˜íŠ¸ ë¶€ë¶„ì„ ì°¸ê³ í•´ì„œ ì§ì ‘ ì¶”ê°€í•  ê²ƒ
 	int TestFunc(lua_State* L)
 	{
-		printf("# TestClass::TestFunc ½ÇÇàÁß\n");
+		printf("# TestClass::TestFunc ì‹¤í–‰ì¤‘\n");
 		return lua_yield(L, 0);
 	}
 
 	int TestFunc2(lua_State* L, float a)
 	{
-		printf("# TestClass::TestFunc2(L,%f) ½ÇÇàÁß\n", a);
+		printf("# TestClass::TestFunc2(L,%f) ì‹¤í–‰ì¤‘\n", a);
 		return lua_yield(L, 0);
 	}
 };
 
 int main()
 {
-	// Lua ¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+	// Lua ë¥¼ ì´ˆê¸°í™” í•œë‹¤.
 	lua_State* L = lua_open();
 
-	// Lua ±âº» ÇÔ¼öµéÀ» ·ÎµåÇÑ´Ù.- print() »ç¿ë
+	// Lua ê¸°ë³¸ í•¨ìˆ˜ë“¤ì„ ë¡œë“œí•œë‹¤.- print() ì‚¬ìš©
 	luaopen_base(L);
-	// Lua ¹®ÀÚ¿­ ÇÔ¼öµéÀ» ·ÎµåÇÑ´Ù.- string »ç¿ë
+	// Lua ë¬¸ìì—´ í•¨ìˆ˜ë“¤ì„ ë¡œë“œí•œë‹¤.- string ì‚¬ìš©
 	luaopen_string(L);
 
-	// TestFunc ÇÔ¼ö¸¦ Lua ¿¡ µî·ÏÇÑ´Ù.
+	// TestFunc í•¨ìˆ˜ë¥¼ Lua ì— ë“±ë¡í•œë‹¤.
 	lua_tinker::def(L, "TestFunc", &TestFunc);
 	lua_tinker::def(L, "TestFunc2", &TestFunc2);
 
-	// TestClass Å¬·¡½º¸¦ Lua ¿¡ Ãß°¡ÇÑ´Ù.
+	// TestClass í´ë˜ìŠ¤ë¥¼ Lua ì— ì¶”ê°€í•œë‹¤.
 	lua_tinker::class_add<TestClass>(L, "TestClass");
-	// TestClass ÀÇ ÇÔ¼ö¸¦ µî·ÏÇÑ´Ù.
+	// TestClass ì˜ í•¨ìˆ˜ë¥¼ ë“±ë¡í•œë‹¤.
 	lua_tinker::class_def<TestClass>(L, "TestFunc", &TestClass::TestFunc);
 	lua_tinker::class_def<TestClass>(L, "TestFunc2", &TestClass::TestFunc2);
 
-	// TestClass ¸¦ Àü¿ª º¯¼ö·Î ¼±¾ğÇÑ´Ù.
+	// TestClass ë¥¼ ì „ì—­ ë³€ìˆ˜ë¡œ ì„ ì–¸í•œë‹¤.
 	TestClass g_test;
 	lua_tinker::set(L, "g_test", &g_test);
 
-	// sample3.lua ÆÄÀÏÀ» ·ÎµåÇÑ´Ù.
+	// sample3.lua íŒŒì¼ì„ ë¡œë“œí•œë‹¤.
 	lua_tinker::dofile(L, "sample6.lua");
 
-	// Thread ¸¦ ½ÃÀÛÇÑ´Ù.
+	// Thread ë¥¼ ì‹œì‘í•œë‹¤.
 	lua_newthread(L);
 	lua_pushstring(L, "ThreadTest");
 	lua_gettable(L, LUA_GLOBALSINDEX);
 
-	// Thread ¸¦ ½ÃÀÛÇÑ´Ù.
-	printf("* lua_resume() È£Ãâ\n");
+	// Thread ë¥¼ ì‹œì‘í•œë‹¤.
+	printf("* lua_resume() í˜¸ì¶œ\n");
 	lua_resume(L, 0);
 
-	// Thread ¸¦ ´Ù½Ã ½ÃÀÛÇÑ´Ù.
-	printf("* lua_resume() È£Ãâ\n");
+	// Thread ë¥¼ ë‹¤ì‹œ ì‹œì‘í•œë‹¤.
+	printf("* lua_resume() í˜¸ì¶œ\n");
 	lua_resume(L, 0);
 
-	// Thread ¸¦ ´Ù½Ã ½ÃÀÛÇÑ´Ù.
-	printf("* lua_resume() È£Ãâ\n");
+	// Thread ë¥¼ ë‹¤ì‹œ ì‹œì‘í•œë‹¤.
+	printf("* lua_resume() í˜¸ì¶œ\n");
 	lua_resume(L, 0);
 
-	// Thread ¸¦ ´Ù½Ã ½ÃÀÛÇÑ´Ù.
-	printf("* lua_resume() È£Ãâ\n");
+	// Thread ë¥¼ ë‹¤ì‹œ ì‹œì‘í•œë‹¤.
+	printf("* lua_resume() í˜¸ì¶œ\n");
 	lua_resume(L, 0);
 
-	// Thread ¸¦ ´Ù½Ã ½ÃÀÛÇÑ´Ù.
-	printf("* lua_resume() È£Ãâ\n");
+	// Thread ë¥¼ ë‹¤ì‹œ ì‹œì‘í•œë‹¤.
+	printf("* lua_resume() í˜¸ì¶œ\n");
 	lua_resume(L, 0);
 
-	// ÇÁ·Î±×·¥ Á¾·á
+	// í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 	lua_close(L);
 
 	return 0;

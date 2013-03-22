@@ -1,18 +1,18 @@
--- lua coroutine Å×½ºÆ® ÇÔ¼ö
+-- lua coroutine í…ŒìŠ¤íŠ¸ í•¨ìˆ˜
 function ThreadTest()
-	print("ThreadTest ½ÃÀÛ")
+	print("ThreadTest ì‹œì‘")
 	
-	print("TestFunc È£Ãâ")
-	-- ³»ºÎ¿¡¼­ lua_yield() °¡ È£ÃâµÈ´Ù.
+	print("TestFunc í˜¸ì¶œ")
+	-- ë‚´ë¶€ì—ì„œ lua_yield() ê°€ í˜¸ì¶œëœë‹¤.
 	TestFunc()
 	TestFunc2(1.2)
-	print("TestFunc Á¾·á")
+	print("TestFunc ì¢…ë£Œ")
 	
-	print("g_test::TestFunc() È£Ãâ")
-	-- ³»ºÎ¿¡¼­ lua_yield() °¡ È£ÃâµÈ´Ù.
+	print("g_test::TestFunc() í˜¸ì¶œ")
+	-- ë‚´ë¶€ì—ì„œ lua_yield() ê°€ í˜¸ì¶œëœë‹¤.
 	g_test:TestFunc()
 	g_test:TestFunc2(2.3)
-	print("g_test::TestFunc() Á¾·á")
+	print("g_test::TestFunc() ì¢…ë£Œ")
 	
-	print("ThreadTest Á¾·á")
+	print("ThreadTest ì¢…ë£Œ")
 end

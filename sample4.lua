@@ -1,25 +1,25 @@
--- Àü¿ª haha Å×ÀÌºíÀ» È®ÀÎÇÑ´Ù.
+-- ì „ì—­ haha í…Œì´ë¸”ì„ í™•ì¸í•œë‹¤.
 print(haha)
 
--- Àü¿ª haha.value¸¦ Ãâ·ÂÇÑ´Ù.
+-- ì „ì—­ haha.valueë¥¼ ì¶œë ¥í•œë‹¤.
 print(haha.value)
 
--- Àü¿ª haha.inside Å×ÀÌºíÀ» È®ÀÎÇÑ´Ù.
+-- ì „ì—­ haha.inside í…Œì´ë¸”ì„ í™•ì¸í•œë‹¤.
 print(haha.inside)
 
--- Àü¿ª haha.inside.value¸¦ Ãâ·ÂÇÑ´Ù.
+-- ì „ì—­ haha.inside.valueë¥¼ ì¶œë ¥í•œë‹¤.
 print(haha.inside.value)
 
--- haha.test °ªÀ» ³Ö´Â´Ù.
+-- haha.test ê°’ì„ ë„£ëŠ”ë‹¤.
 haha.test = "input from lua"
 
--- LuaTinker °¡ ÀÔ·ÂÀ¸·Î Å×ÀÌºíÀ» ³Ñ±ä´Ù.
+-- LuaTinker ê°€ ì…ë ¥ìœ¼ë¡œ í…Œì´ë¸”ì„ ë„˜ê¸´ë‹¤.
 function print_table(arg)
 	print("arg = ", arg)
 	print("arg.name = ", arg.name)
 end
 
--- LuaTinker ¿¡°Ô Å×ÀÌºíÀ» ³Ñ±ä´Ù.
+-- LuaTinker ì—ê²Œ í…Œì´ë¸”ì„ ë„˜ê¸´ë‹¤.
 function return_table(arg)
 	local ret = {}
 	ret.name = arg

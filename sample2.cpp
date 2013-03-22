@@ -1,4 +1,4 @@
-// sample2.cpp : C++ ¿Í Lua »óÈ£°£ÀÇ º¯¼ö Á¢±ÙÀ» ¾Ë¾Æº»´Ù.
+// sample2.cpp : C++ ì™€ Lua ìƒí˜¸ê°„ì˜ ë³€ìˆ˜ ì ‘ê·¼ì„ ì•Œì•„ë³¸ë‹¤.
 //
 
 extern "C" 
@@ -14,25 +14,25 @@ static int cpp_int = 100;
 
 int main()
 {
-	// Lua ¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+	// Lua ë¥¼ ì´ˆê¸°í™” í•œë‹¤.
 	lua_State* L = lua_open();
 
-	// Lua ±âº» ÇÔ¼öµéÀ» ·ÎµåÇÑ´Ù.- print() »ç¿ë
+	// Lua ê¸°ë³¸ í•¨ìˆ˜ë“¤ì„ ë¡œë“œí•œë‹¤.- print() ì‚¬ìš©
 	luaopen_base(L);
 
-	// LuaTinker ¸¦ ÀÌ¿ëÇØ¼­ cpp_int ¸¦ Lua¿¡ Àü´Ş
+	// LuaTinker ë¥¼ ì´ìš©í•´ì„œ cpp_int ë¥¼ Luaì— ì „ë‹¬
 	lua_tinker::set(L, "cpp_int", cpp_int);
 
-	// sample1.lua ÆÄÀÏÀ» ·Îµå/½ÇÇàÇÑ´Ù.
+	// sample1.lua íŒŒì¼ì„ ë¡œë“œ/ì‹¤í–‰í•œë‹¤.
 	lua_tinker::dofile(L, "sample2.lua");
 
-	// sample1.lua ÀÇ ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+	// sample1.lua ì˜ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
 	int lua_int = lua_tinker::get<int>(L, "lua_int");
 
-	// lua_int °ª Ãâ·Â
+	// lua_int ê°’ ì¶œë ¥
 	printf("lua_int = %d\n", lua_int);
 
-	// ÇÁ·Î±×·¥ Á¾·á
+	// í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 	lua_close(L);
 
 	return 0;

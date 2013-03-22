@@ -1,34 +1,34 @@
--- Àü¿ª g_test ÀÇ ¸â¹ö º¯¼ö _test ÀÇ °ªÀ» Ãâ·ÂÇÑ´Ù.
+-- ì „ì—­ g_test ì˜ ë©¤ë²„ ë³€ìˆ˜ _test ì˜ ê°’ì„ ì¶œë ¥í•œë‹¤.
 print(g_test._test)
 
--- const char* test::is_test() ÇÔ¼öÀÇ °á°ú¸¦ Ãâ·ÂÇÑ´Ù.
+-- const char* test::is_test() í•¨ìˆ˜ì˜ ê²°ê³¼ë¥¼ ì¶œë ¥í•œë‹¤.
 print(g_test:is_test())
 
--- test::ret_int() ÇÔ¼öÀÇ °á°ú¹°À» Ãâ·ÂÇÑ´Ù.
+-- test::ret_int() í•¨ìˆ˜ì˜ ê²°ê³¼ë¬¼ì„ ì¶œë ¥í•œë‹¤.
 print(g_test:ret_int())
 
--- temp ¿¡ »õ test °´Ã¼¸¦ ¸¸µé¾î ³Ö´Â´Ù.
+-- temp ì— ìƒˆ test ê°ì²´ë¥¼ ë§Œë“¤ì–´ ë„£ëŠ”ë‹¤.
 temp = test(4)
 
--- test ÀÇ ¸â¹ö º¯¼ö _test °ªÀ» Ãâ·ÂÇÑ´Ù.
+-- test ì˜ ë©¤ë²„ ë³€ìˆ˜ _test ê°’ì„ ì¶œë ¥í•œë‹¤.
 print(temp._test)
 
--- Lua ¿¡ Ãß°¡µÇÁö ¾ÊÀº A ±¸Á¶Ã¼°ªÀ» a¶ó´Â º¯¼ö¿¡ ³Ö´Â´Ù.
+-- Lua ì— ì¶”ê°€ë˜ì§€ ì•Šì€ A êµ¬ì¡°ì²´ê°’ì„ aë¼ëŠ” ë³€ìˆ˜ì— ë„£ëŠ”ë‹¤.
 a = g_test:get()
 
--- ÀÓÀÇÀÇ °´Ã¼ a¸¦ Lua->C++·Î Àü´ÞÇÑ´Ù.
+-- ìž„ì˜ì˜ ê°ì²´ aë¥¼ Lua->C++ë¡œ ì „ë‹¬í•œë‹¤.
 temp:set(a)
 
--- test::set(A a) ÇÔ¼ö È£Ãâ·Î _test ¿¡ »ý±ä º¯È­¸¦ È®ÀÎÇÑ´Ù.
+-- test::set(A a) í•¨ìˆ˜ í˜¸ì¶œë¡œ _test ì— ìƒê¸´ ë³€í™”ë¥¼ í™•ì¸í•œë‹¤.
 print(temp._test)
 
--- »ó¼Ó¹ÞÀº ºÎ¸ðÀÇ ÇÔ¼ö È£Ãâ
+-- ìƒì†ë°›ì€ ë¶€ëª¨ì˜ í•¨ìˆ˜ í˜¸ì¶œ
 print(temp:is_base())
 
--- ÀÚ±â ÀÚ½ÅÀÇ ÇÔ¼ö È£Ãâ
+-- ìžê¸° ìžì‹ ì˜ í•¨ìˆ˜ í˜¸ì¶œ
 print(temp:is_test())
 
--- ¾î¶°ÇÑ °´Ã¼ÀÇ metatableÀ» ÅëÇØ µî·ÏµÈ Å¬·¡½º¿Í ±× ÇÔ¼öµéÀ» »ìÆìº¸´Â ÇÔ¼ö
+-- ì–´ë– í•œ ê°ì²´ì˜ metatableì„ í†µí•´ ë“±ë¡ëœ í´ëž˜ìŠ¤ì™€ ê·¸ í•¨ìˆ˜ë“¤ì„ ì‚´íŽ´ë³´ëŠ” í•¨ìˆ˜
 -------------------------------------------------------------------------------
 function objinfo(obj)
 
@@ -61,20 +61,20 @@ function metainfo(meta)
 end
 -------------------------------------------------------------------------------
 
--- Lua ¿¡¼­ °´Ã¼´Â userdata·Î ÀÎ½ÄµÈ´Ù.
+-- Lua ì—ì„œ ê°ì²´ëŠ” userdataë¡œ ì¸ì‹ëœë‹¤.
 print("g_test	-> ", g_test)
 print("temp	-> ", temp)
 print("a	-> ", a)
 
--- C++ ¿¡¼­ µî·ÏÇÑ g_test ÀÇ °´Ã¼ Á¤º¸¸¦ »ìÆìº»´Ù.
+-- C++ ì—ì„œ ë“±ë¡í•œ g_test ì˜ ê°ì²´ ì •ë³´ë¥¼ ì‚´íŽ´ë³¸ë‹¤.
 print("objinfo(g_test)")
 objinfo(g_test)
 
--- constructor ¸¦ ÅëÇØ »ý¼ºÇÑ temp °´Ã¼ Á¤º¸¸¦ »ìÆìº»´Ù.
+-- constructor ë¥¼ í†µí•´ ìƒì„±í•œ temp ê°ì²´ ì •ë³´ë¥¼ ì‚´íŽ´ë³¸ë‹¤.
 print("objinfo(temp)")
 objinfo(temp)
 
--- µî·ÏÇÏÁö ¾ÊÀº A ±¸Á¶Ã¼ ÇüÀÇ a °´Ã¼ Á¤º¸¸¦ »ìÆìº»´Ù.
+-- ë“±ë¡í•˜ì§€ ì•Šì€ A êµ¬ì¡°ì²´ í˜•ì˜ a ê°ì²´ ì •ë³´ë¥¼ ì‚´íŽ´ë³¸ë‹¤.
 print("objinfo(a)")
 objinfo(a)
 

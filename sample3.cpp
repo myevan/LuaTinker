@@ -1,4 +1,4 @@
-// sample3.cpp : LuaTinker ÀÇ Å¬·¡½º ±â´ÉÀ» ¾Ë¾Æº»´Ù.
+// sample3.cpp : LuaTinker ì˜ í´ë˜ìŠ¤ ê¸°ëŠ¥ì„ ì•Œì•„ë³¸ë‹¤.
 //
 
 extern "C" 
@@ -44,26 +44,26 @@ test g_test(11);
 
 int main()
 {
-	// Lua ¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+	// Lua ë¥¼ ì´ˆê¸°í™” í•œë‹¤.
 	lua_State* L = lua_open();
 
-	// Lua ±âº» ÇÔ¼öµéÀ» ·ÎµåÇÑ´Ù.- print() »ç¿ë
+	// Lua ê¸°ë³¸ í•¨ìˆ˜ë“¤ì„ ë¡œë“œí•œë‹¤.- print() ì‚¬ìš©
 	luaopen_base(L);
-	// Lua ¹®ÀÚ¿­ ÇÔ¼öµéÀ» ·ÎµåÇÑ´Ù.- string »ç¿ë
+	// Lua ë¬¸ìì—´ í•¨ìˆ˜ë“¤ì„ ë¡œë“œí•œë‹¤.- string ì‚¬ìš©
 	luaopen_string(L);
 
-	// base Å¬·¡½º¸¦ Lua ¿¡ Ãß°¡ÇÑ´Ù.
+	// base í´ë˜ìŠ¤ë¥¼ Lua ì— ì¶”ê°€í•œë‹¤.
 	lua_tinker::class_add<base>(L, "base");
-	// base ÀÇ ÇÔ¼ö¸¦ µî·ÏÇÑ´Ù.
+	// base ì˜ í•¨ìˆ˜ë¥¼ ë“±ë¡í•œë‹¤.
 	lua_tinker::class_def<base>(L, "is_base", &base::is_base);
 
-	// test Å¬·¡½º¸¦ Lua ¿¡ Ãß°¡ÇÑ´Ù.
+	// test í´ë˜ìŠ¤ë¥¼ Lua ì— ì¶”ê°€í•œë‹¤.
 	lua_tinker::class_add<test>(L, "test");
-	// test °¡ base ¿¡ »ó¼Ó ¹Ş¾ÒÀ½À» ¾Ë·ÁÁØ´Ù.
+	// test ê°€ base ì— ìƒì† ë°›ì•˜ìŒì„ ì•Œë ¤ì¤€ë‹¤.
 	lua_tinker::class_inh<test, base>(L);
-	// test Å¬·¡½º »ı¼ºÀÚ¸¦ µî·ÏÇÑ´Ù.
+	// test í´ë˜ìŠ¤ ìƒì„±ìë¥¼ ë“±ë¡í•œë‹¤.
 	lua_tinker::class_con<test>(L, lua_tinker::constructor<test,int>);
-	// test ÀÇ ÇÔ¼öµéÀ» µî·ÏÇÑ´Ù.
+	// test ì˜ í•¨ìˆ˜ë“¤ì„ ë“±ë¡í•œë‹¤.
 	lua_tinker::class_def<test>(L, "is_test", &test::is_test);
 	lua_tinker::class_def<test>(L, "ret_void", &test::ret_void);
 	lua_tinker::class_def<test>(L, "ret_int", &test::ret_int);
@@ -72,13 +72,13 @@ int main()
 	lua_tinker::class_def<test>(L, "set", &test::set);
 	lua_tinker::class_mem<test>(L, "_test", &test::_test);
 	
-	// Lua Àü¿ª º¯¼öÈ£ g_test ÀÇ Æ÷ÀÎÅÍ¸¦ µî·ÏÇÑ´Ù.
+	// Lua ì „ì—­ ë³€ìˆ˜í˜¸ g_test ì˜ í¬ì¸í„°ë¥¼ ë“±ë¡í•œë‹¤.
 	lua_tinker::set(L, "g_test", &g_test);
 
-	// sample3.lua ÆÄÀÏÀ» ·Îµå/½ÇÇàÇÑ´Ù.
+	// sample3.lua íŒŒì¼ì„ ë¡œë“œ/ì‹¤í–‰í•œë‹¤.
 	lua_tinker::dofile(L, "sample3.lua");
 
-	// ÇÁ·Î±×·¥ Á¾·á
+	// í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 	lua_close(L);
 
 	return 0;

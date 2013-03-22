@@ -1,7 +1,7 @@
-// sample4.cpp : table Á¢±Ù ¹ıÀ» ¾Ë¾Æº»´Ù.
-// table Àº ºü¸¥ Á¢±ÙÀ» À§ÇØ¼­ stack ¿¡ tableÀ» º¹»çÇØ¼­ ¾²°Ô µÈ´Ù. 
-// Lua ¿¡¼­ Å×ÀÌºíÀº ½ºÅÃ À§¿¡¼­´Â Æ÷ÀÎÅÍ¸¸ ¿Ã¶ó°¡°í ½ÇÁ¦ °´Ã¼´Â ³»ºÎ¿¡¼­ °ü¸®µÈ´Ù.
-// µû¶ó¼­ Àß¸ø »ç¿ëÇÒ °æ¿ì ¸®ÅÏÀ» ±ú¸Ô°Å³ª Lua ½ºÅÃÀ§ÀÇ Áö¿ª º¯¼öµé¿¡ ¹®Á¦¸¦ ÀÏÀ¸Å³ ¼öµµ ÀÖ´Ù.
+// sample4.cpp : table ì ‘ê·¼ ë²•ì„ ì•Œì•„ë³¸ë‹¤.
+// table ì€ ë¹ ë¥¸ ì ‘ê·¼ì„ ìœ„í•´ì„œ stack ì— tableì„ ë³µì‚¬í•´ì„œ ì“°ê²Œ ëœë‹¤. 
+// Lua ì—ì„œ í…Œì´ë¸”ì€ ìŠ¤íƒ ìœ„ì—ì„œëŠ” í¬ì¸í„°ë§Œ ì˜¬ë¼ê°€ê³  ì‹¤ì œ ê°ì²´ëŠ” ë‚´ë¶€ì—ì„œ ê´€ë¦¬ëœë‹¤.
+// ë”°ë¼ì„œ ì˜ëª» ì‚¬ìš©í•  ê²½ìš° ë¦¬í„´ì„ ê¹¨ë¨¹ê±°ë‚˜ Lua ìŠ¤íƒìœ„ì˜ ì§€ì—­ ë³€ìˆ˜ë“¤ì— ë¬¸ì œë¥¼ ì¼ìœ¼í‚¬ ìˆ˜ë„ ìˆë‹¤.
 
 extern "C" 
 {
@@ -14,48 +14,48 @@ extern "C"
 
 int main()
 {
-	// Lua ¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+	// Lua ë¥¼ ì´ˆê¸°í™” í•œë‹¤.
 	lua_State* L = lua_open();
 
-	// Lua ±âº» ÇÔ¼öµéÀ» ·ÎµåÇÑ´Ù.- print() »ç¿ë
+	// Lua ê¸°ë³¸ í•¨ìˆ˜ë“¤ì„ ë¡œë“œí•œë‹¤.- print() ì‚¬ìš©
 	luaopen_base(L);
 
-	// Lua Å×ÀÌºíÀ» »ı¼ºÇÏ°í ½ºÅÃ¿¡ Çª½¬ÇÑ´Ù.
+	// Lua í…Œì´ë¸”ì„ ìƒì„±í•˜ê³  ìŠ¤íƒì— í‘¸ì‰¬í•œë‹¤.
 	lua_tinker::table haha(L, "haha");
 
-	// haha.value = 1 °ªÀ» ³Ö´Â´Ù.
+	// haha.value = 1 ê°’ì„ ë„£ëŠ”ë‹¤.
 	haha.set("value", 1);
 
-	// table ³»¿¡ tableÀ» ¸¸µé¾î ³Ö´Â´Ù.
+	// table ë‚´ì— tableì„ ë§Œë“¤ì–´ ë„£ëŠ”ë‹¤.
 	haha.set("inside", lua_tinker::table(L));
 
-	// haha.inside ÀÇ Æ÷ÀÎÅÍ¸¦ ½ºÅÃÀ§·Î º¹»çÇÑ´Ù.
+	// haha.inside ì˜ í¬ì¸í„°ë¥¼ ìŠ¤íƒìœ„ë¡œ ë³µì‚¬í•œë‹¤.
 	lua_tinker::table inside = haha.get<lua_tinker::table>("inside");
 
-	// inside.value = 2 °ªÀ» ³Ö´Â´Ù.
+	// inside.value = 2 ê°’ì„ ë„£ëŠ”ë‹¤.
 	inside.set("value", 2);
 
-	// sample4.lua ÆÄÀÏÀ» ·Îµå/½ÇÇàÇÑ´Ù.
+	// sample4.lua íŒŒì¼ì„ ë¡œë“œ/ì‹¤í–‰í•œë‹¤.
 	lua_tinker::dofile(L, "sample4.lua");
 
-	// Lua ¿¡¼­ »ı¼ºÇÑ haha.test °ªÀ» ÀĞ´Â´Ù.
+	// Lua ì—ì„œ ìƒì„±í•œ haha.test ê°’ì„ ì½ëŠ”ë‹¤.
 	const char* test = haha.get<const char*>("test");
 	printf("haha.test = %s\n", test);
 
-	// Àü¿ª¿¡ µî·ÏÇÏÁö ¾Ê°í Lua ½ºÅÃ¿¡ ºó Å×ÀÌºíÀ» »ı¼ºÇÑ´Ù.(Áö¿ªº¯¼ö)
+	// ì „ì—­ì— ë“±ë¡í•˜ì§€ ì•Šê³  Lua ìŠ¤íƒì— ë¹ˆ í…Œì´ë¸”ì„ ìƒì„±í•œë‹¤.(ì§€ì—­ë³€ìˆ˜)
 	lua_tinker::table temp(L);
 
-	// ºó Å×ÀÌºí.name ¿¡ °ªÀ» ³Ö´Â´Ù.
+	// ë¹ˆ í…Œì´ë¸”.name ì— ê°’ì„ ë„£ëŠ”ë‹¤.
 	temp.set("name", "local table !!");
 
-	// tableÀ» ÀÇ ÀÎÀÚ·Î »ç¿ëÇÏ¿© print_table À» È£ÃâÇÑ´Ù.
+	// tableì„ ì˜ ì¸ìë¡œ ì‚¬ìš©í•˜ì—¬ print_table ì„ í˜¸ì¶œí•œë‹¤.
 	lua_tinker::call<void>(L, "print_table", temp);
 
-	// ÇÔ¼ö°¡ ¸®ÅÏÇÏ´Â tableÀ» ¹Ş´Â´Ù.
+	// í•¨ìˆ˜ê°€ ë¦¬í„´í•˜ëŠ” tableì„ ë°›ëŠ”ë‹¤.
 	lua_tinker::table ret = lua_tinker::call<lua_tinker::table>(L, "return_table", "give me a table !!");
 	printf("ret.name =\t%s\n", ret.get<const char*>("name"));
 
-	// ÇÁ·Î±×·¥ Á¾·á
+	// í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 	lua_close(L);
 
 	return 0;

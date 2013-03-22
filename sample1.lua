@@ -1,10 +1,10 @@
--- C++ ¿¡¼­ µî·ÏÇÑ ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+-- C++ ì—ì„œ ë“±ë¡í•œ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
 result = cpp_func(1, 2)
 
 print("cpp_func(1,2) = "..result)
 
 
--- ÀÏ¹İÀûÀÎ lua ÇÔ¼ö¸¦ ¼±¾ğÇÑ´Ù.
+-- ì¼ë°˜ì ì¸ lua í•¨ìˆ˜ë¥¼ ì„ ì–¸í•œë‹¤.
 function lua_func(arg1, arg2)
 	return arg1 + arg2
 end
