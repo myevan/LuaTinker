@@ -15,13 +15,13 @@ haha.test = "input from lua"
 
 -- LuaTinker 가 입력으로 테이블을 넘긴다.
 function print_table(arg)
-	print("arg = ", arg)
-	print("arg.name = ", arg.name)
+    print("arg = ", arg)
+    print("arg.name = ", arg.name)
 end
 
 -- LuaTinker 에게 테이블을 넘긴다.
 function return_table(arg)
-	local ret = {}
-	ret.name = arg
-	return ret
+    local ret = {}
+    ret.name = arg
+    return ret
 end
