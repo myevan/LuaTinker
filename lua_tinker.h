@@ -42,6 +42,11 @@ namespace lua_tinker
     int        on_error(lua_State *L);
     void    print_error(lua_State *L, const char* fmt, ...);
 
+    // class helper
+    int meta_get(lua_State *L);
+    int meta_set(lua_State *L);
+    void push_meta(lua_State *L, const char* name);
+
     // dynamic type extention
     struct lua_value
     {
@@ -459,7 +464,26 @@ namespace lua_tinker
     {
         V T::*_var;
         mem_var(V T::*val) : _var(val) {}
+
+#ifdef _MSC_VER
         void get(lua_State *L)    { push<if_<is_obj<V>::value,V&,V>::type>(L, read<T*>(L,1)->*(_var));    }
+#endif
+
+#ifdef __APPLE__
+        void get(lua_State *L)
+        {
+            if (is_obj<V>::value)
+            {
+                push<V&>(L, read<T*>(L,1)->*(_var));
+            }
+            else
+            {
+                push<V>(L, read<T*>(L,1)->*(_var));
+            }
+
+        }
+#endif
+
         void set(lua_State *L)    { read<T*>(L,1)->*(_var) = read<V>(L, 3);    }
     };
 

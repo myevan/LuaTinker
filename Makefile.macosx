@@ -16,7 +16,7 @@ clean:
 	rm -rf luaconf.h
 	rm -rf lauxlib.h
 
-samples: __$(LUA) liblua.a sample1.exe sample2.exe 
+samples: __$(LUA) liblua.a sample1.exe sample2.exe sample3.exe sample4.exe sample5.exe sample6.exe
 
 __$(LUA):
 	wget http://www.lua.org/ftp/$(LUA).tar.gz 
