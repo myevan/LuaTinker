@@ -33,7 +33,15 @@ void lua_tinker::init(lua_State *L)
 static int tostring_s64(lua_State *L)
 {
     char temp[64];
+    
+#ifdef _MSC_VER
     sprintf_s(temp, "%I64d", *(long long*)lua_topointer(L, 1));
+#endif
+
+#ifdef __APPLE__
+    sprintf_s(temp, "%lld", *(long long*)lua_topointer(L, 1));
+#endif
+
     lua_pushstring(L, temp);
     return 1;
 }
@@ -95,7 +103,14 @@ void lua_tinker::init_s64(lua_State *L)
 static int tostring_u64(lua_State *L)
 {
     char temp[64];
+
+#ifdef _MSC_VER
     sprintf_s(temp, "%I64u", *(unsigned long long*)lua_topointer(L, 1));
+#endif
+
+#ifdef __APPLE__
+    sprintf_s(temp, "%llu", *(unsigned long long*)lua_topointer(L, 1));
+#endif
     lua_pushstring(L, temp);
     return 1;
 }
