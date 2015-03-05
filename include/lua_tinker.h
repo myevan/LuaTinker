@@ -928,7 +928,14 @@ namespace lua_tinker
         static const char* name(const char* name = NULL)
         {
             static char temp[256] = "";
-            if(name) strcpy_s(temp, name);
+			if (name)
+			{
+#ifdef _MSC_VER
+				strcpy_s(temp, name);
+#else
+				strcpy(temp, name);
+#endif
+			}
             return temp;
         }
     };
