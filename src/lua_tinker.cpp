@@ -1,4 +1,4 @@
-// lua_tinker.cpp
+﻿// lua_tinker.cpp
 //
 // LuaTinker - Simple and light C++ wrapper for Lua.
 //
@@ -16,20 +16,6 @@ extern "C"
 };
 
 #include "lua_tinker.h"
-
-
-#ifndef strcpy_s
-#define strcpy_s strcpy
-#endif
-
-#ifndef sprintf_s
-#define sprintf_s sprintf
-#endif
-
-#ifndef vsprintf_s
-#define vsprintf_s vsprintf
-#endif
-
 
 /*---------------------------------------------------------------------------*/ 
 /* init                                                                      */ 
@@ -49,10 +35,8 @@ static int tostring_s64(lua_State *L)
     
 #ifdef _MSC_VER
     sprintf_s(temp, "%I64d", *(long long*)lua_topointer(L, 1));
-#endif
-
-#ifdef __APPLE__
-    sprintf_s(temp, "%lld", *(long long*)lua_topointer(L, 1));
+#else
+    sprintf(temp, "%lld", *(long long*)lua_topointer(L, 1));
 #endif
 
     lua_pushstring(L, temp);
@@ -119,10 +103,8 @@ static int tostring_u64(lua_State *L)
 
 #ifdef _MSC_VER
     sprintf_s(temp, "%I64u", *(unsigned long long*)lua_topointer(L, 1));
-#endif
-
-#ifdef __APPLE__
-    sprintf_s(temp, "%llu", *(unsigned long long*)lua_topointer(L, 1));
+#else
+    sprintf(temp, "%llu", *(unsigned long long*)lua_topointer(L, 1));
 #endif
     lua_pushstring(L, temp);
     return 1;
@@ -272,7 +254,12 @@ void lua_tinker::print_error(lua_State *L, const char* fmt, ...)
 
     va_list args;
     va_start(args, fmt);
+
+#ifdef _MSC_VER
     vsprintf_s(text, fmt, args);
+#else
+    vsprintf(text, fmt, args);
+#endif
     va_end(args);
 
     lua_pushstring(L, "_ALERT");

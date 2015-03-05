@@ -1,4 +1,4 @@
-// sample5.cpp : Defines the entry point for the console application.
+﻿// sample5.cpp : Defines the entry point for the console application.
 //
 
 extern "C" 

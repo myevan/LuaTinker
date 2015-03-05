@@ -1,4 +1,4 @@
-// sample2.cpp : C++ 와 Lua 상호간의 변수 접근을 알아본다.
+﻿// sample2.cpp : C++ 와 Lua 상호간의 변수 접근을 알아본다.
 //
 
 extern "C" 

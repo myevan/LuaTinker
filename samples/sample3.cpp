@@ -1,4 +1,4 @@
-// sample3.cpp : LuaTinker 의 클래스 기능을 알아본다.
+﻿// sample3.cpp : LuaTinker 의 클래스 기능을 알아본다.
 //
 
 extern "C" 
