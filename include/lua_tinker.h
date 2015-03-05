@@ -455,9 +455,7 @@ namespace lua_tinker
 
 #ifdef _MSC_VER
         void get(lua_State *L)    { push<if_<is_obj<V>::value,V&,V>::type>(L, read<T*>(L,1)->*(_var));    }
-#endif
-
-#ifdef __APPLE__
+#else
         void get(lua_State *L)
         {
             if (is_obj<V>::value)
