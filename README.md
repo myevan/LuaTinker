@@ -1,3 +1,14 @@
-myevan/LuaTinker is derived from zupet/LuaTinker <https://github.com/zupet/LuaTinker> for **Mac OS X**
+LuaTinker with CMake
+====================
 
-    $ make -f Makefile.macosx
+How to build
+------------
+
+#### Requirements
+
+* lua-5.1.x
+   
+#### Quick Building
+
+    $ ./build.sh 
+
