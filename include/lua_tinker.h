@@ -12,18 +12,6 @@
 #include <new>
 #include <string.h>
 
-#ifndef strcpy_s
-#define strcpy_s strcpy
-#endif
-
-#ifndef sprintf_s
-#define sprintf_s sprintf
-#endif
-
-#ifndef vsprintf_s
-#define vsprintf_s vsprintf
-#endif
-
 namespace lua_tinker
 {
     // init LuaTinker
