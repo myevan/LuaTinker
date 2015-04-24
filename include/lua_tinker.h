@@ -23,11 +23,11 @@ namespace lua_tinker
     // string-buffer excution
     void    dofile(lua_State *L, const char *filename);
     void    dostring(lua_State *L, const char* buff);
-    void    dobuffer(lua_State *L, const char* buff, size_t sz);
+    void    dobuffer(lua_State *L, const char* buff, size_t sz, const char* source=NULL);
     
     // debug helpers
     void    enum_stack(lua_State *L);
-    int        on_error(lua_State *L);
+    int     on_error(lua_State *L);
     void    print_error(lua_State *L, const char* fmt, ...);
 
     // class helper

@@ -189,12 +189,14 @@ void lua_tinker::dostring(lua_State *L, const char* buff)
 }
 
 /*---------------------------------------------------------------------------*/ 
-void lua_tinker::dobuffer(lua_State *L, const char* buff, size_t len)
+void lua_tinker::dobuffer(lua_State *L, const char* buff, size_t len, const char* source)
 {
     lua_pushcclosure(L, on_error, 0);
     int errfunc = lua_gettop(L);
+    if(source == NULL)
+        source = "lua_tinker::dobuffer()";
 
-    if(luaL_loadbuffer(L, buff, len, "lua_tinker::dobuffer()") == 0)
+    if(luaL_loadbuffer(L, buff, len, dobuffer) == 0)
     {
         lua_pcall(L, 0, 1, errfunc);
     }
