@@ -196,7 +196,7 @@ void lua_tinker::dobuffer(lua_State *L, const char* buff, size_t len, const char
     if(source == NULL)
         source = "lua_tinker::dobuffer()";
 
-    if(luaL_loadbuffer(L, buff, len, dobuffer) == 0)
+    if(luaL_loadbuffer(L, buff, len, source) == 0)
     {
         lua_pcall(L, 0, 1, errfunc);
     }
